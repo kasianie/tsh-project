@@ -1,0 +1,10 @@
+{
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "prettier.useTabs": true,
+    "arrowParens": "avoid",
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "printWidth": 120,
+    "semi": true
+}
