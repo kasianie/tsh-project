@@ -1,0 +1,12 @@
+export const colorPrimaryMain = 'rgba(68, 96, 247, 1)';
+export const colorPrimaryDark = 'rgba(33, 64, 232, 1)';
+export const colorSecondaryMain = 'rgba(249, 165, 43, 1)';
+export const colorBackground = 'rgba(242, 242, 242, 1)';
+export const colorWhite = 'rgba(255, 255, 255, 1)';
+export const colorGrey1 = 'rgba(240, 241, 245, 1)';
+export const colorGrey2 = 'rgba(224, 226, 234, 1)';
+export const colorGrey3 = 'rgba(185, 189, 207, 1)';
+export const colorGrey4 = 'rgba(145, 148, 165, 1)';
+export const colorGrey5 = 'rgba(26, 27, 29, 1)';
+export const paddingPage = '0 24px';
+export const maxWidthPageContent = '1224px';
