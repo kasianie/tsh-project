@@ -1,8 +1,5 @@
-import { ContentWrapper, MainWrapper } from './styles';
-
-type LayoutWrapperProps = {
-    children: React.ReactNode;
-};
+import { ContentWrapper, MainWrapper } from './LayoutWrapper.styles';
+import { LayoutWrapperProps } from './LayoutWrapper.types';
 
 export const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
     return (

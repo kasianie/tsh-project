@@ -2,6 +2,7 @@ export const colorPrimaryMain = 'rgba(68, 96, 247, 1)';
 export const colorPrimaryDark = 'rgba(33, 64, 232, 1)';
 export const colorSecondaryMain = 'rgba(249, 165, 43, 1)';
 export const colorBackground = 'rgba(242, 242, 242, 1)';
+export const colorBackgroundOverlay = 'rgba(242, 242, 242, .5)';
 export const colorWhite = 'rgba(255, 255, 255, 1)';
 export const colorGrey1 = 'rgba(240, 241, 245, 1)';
 export const colorGrey2 = 'rgba(224, 226, 234, 1)';

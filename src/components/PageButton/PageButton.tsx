@@ -1,11 +1,12 @@
-import { StyledPageButton } from './styles';
+import { StyledPageButton } from './PageButton.styles';
+import { PageButtonProps } from './PageButton.types';
 
-export const PageButton = ({ value, currentPage, onClick, ...props }: any) => (
+export const PageButton = ({ value, currentPage, handleClick, ...props }: PageButtonProps) => (
     <li>
         <StyledPageButton
-            color={currentPage === value ? 'primary' : 'inherit'}
-            onClick={() => value !== currentPage && onClick(value)}
             {...props}
+            color={currentPage === value ? 'primary' : 'inherit'}
+            onClick={() => value !== currentPage && handleClick(value)}
         />
     </li>
 );

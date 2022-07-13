@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material';
 import {
     colorBackground,
+    colorBackgroundOverlay,
     colorGrey1,
     colorGrey2,
     colorGrey3,
@@ -19,6 +20,10 @@ declare module '@mui/material/styles/createPalette' {
         grey3: string;
         grey4: string;
         grey5: string;
+    }
+
+    interface TypeBackground {
+        overlay: string;
     }
 }
 
@@ -60,7 +65,8 @@ export const theme = createTheme({
             secondary: colorGrey4
         },
         background: {
-            default: colorBackground
+            default: colorBackground,
+            overlay: colorBackgroundOverlay
         },
         common: {
             grey1: colorGrey1,
@@ -106,8 +112,8 @@ export const theme = createTheme({
             styleOverrides: {
                 icon: {
                     svg: {
-                        width: '16px',
-                        height: '16px',
+                        width: '13px',
+                        height: '13px',
                         marginRight: '8px'
                     }
                 },
@@ -145,14 +151,15 @@ export const theme = createTheme({
         MuiInputAdornment: {
             styleOverrides: {
                 root: {
-                    color: colorGrey5
+                    color: colorGrey5,
+                    svg: {
+                        height: '18px',
+                        width: '18px'
+                    }
                 }
             }
         },
         MuiSvgIcon: {
-            defaultProps: {
-                viewBox: '-3 -3 24 24'
-            },
             styleOverrides: {
                 root: {
                     path: {

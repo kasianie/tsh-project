@@ -12,6 +12,6 @@ export const StyledPageButtonList = styled('ul')({
         marginRight: '32px'
     },
     '& > li:last-of-type': {
-        marginLeft: '32px'
+        marginLeft: '16px'
     }
 });

@@ -1,30 +1,15 @@
-import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Button, CardMedia, Typography } from '@mui/material';
+import { ProductItem } from 'pages/products/Products.types';
 import { StarRating } from 'components/StarRating/StarRating';
-import { StyledCardLabel } from './styles';
+import { BottomCardSection, StyledCard, StyledCardContent, StyledCardLabel } from './ProductCard.styles';
 
-type ProductCardProps = {
-    id: number;
-    name: string;
-    description: string;
-    rating: number;
-    image: string;
-    promo: boolean;
-    active: boolean;
+type ProductCardProps = ProductItem & {
+    onClick: (id: number) => void;
 };
 
-export const ProductCard = ({ id, name, description, rating, image, promo, active }: ProductCardProps) => {
+export const ProductCard = ({ id, name, description, rating, image, promo, active, onClick }: ProductCardProps) => {
     return (
-        <Card
-            component="article"
-            sx={{
-                height: '100%',
-                borderRadius: '8px',
-                boxShadow: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                position: 'relative'
-            }}
-        >
+        <StyledCard component="article">
             <CardMedia
                 component="img"
                 height="170"
@@ -33,7 +18,7 @@ export const ProductCard = ({ id, name, description, rating, image, promo, activ
                 sx={!active ? { filter: 'grayscale(100%)', opacity: 0.5 } : {}}
             />
             {promo && <StyledCardLabel>Promo</StyledCardLabel>}
-            <CardContent style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <StyledCardContent>
                 <section>
                     <Typography variant="h5" marginBottom="8px">
                         {name}
@@ -42,13 +27,19 @@ export const ProductCard = ({ id, name, description, rating, image, promo, activ
                         {description}
                     </Typography>
                 </section>
-                <footer style={{ marginTop: '32px' }}>
+                <BottomCardSection>
                     <StarRating value={rating} readOnly sx={{ marginBottom: '16px' }} />
-                    <Button onClick={() => alert(id)} fullWidth variant="contained" color="primary" disabled={!active}>
+                    <Button
+                        onClick={() => onClick(id)}
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        disabled={!active}
+                    >
                         {active ? 'Show details' : 'Unavailable'}
                     </Button>
-                </footer>
-            </CardContent>
-        </Card>
+                </BottomCardSection>
+            </StyledCardContent>
+        </StyledCard>
     );
 };

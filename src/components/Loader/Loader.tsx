@@ -1,8 +1,10 @@
 import { LoaderIcon } from 'components/icons';
-import { StyledLoaderWrapper } from './styles';
+import { StyledLoader, StyledLoaderWrapper } from './Loader.styles';
 
 export const Loader = () => (
     <StyledLoaderWrapper>
-        <LoaderIcon />
+        <StyledLoader>
+            <LoaderIcon />
+        </StyledLoader>
     </StyledLoaderWrapper>
 );

@@ -1,13 +1,9 @@
-import { Button, Typography } from '@mui/material';
-import { LayoutWrapper } from 'components/LayoutWrapper/LayoutWrapper';
-import { ReactNode } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { AppRoute } from 'routing/AppRoute.enum';
-import { StyledHeader, StyledHeaderButtonWrapper, StyledHeaderContent, StyledHeaderLogo } from './styles';
-
-export type AppBarProps = {
-    children: ReactNode;
-};
+import { AppBarProps } from './AppBar.types';
+import { Button, Typography } from '@mui/material';
+import { LayoutWrapper } from 'components/LayoutWrapper/LayoutWrapper';
+import { StyledHeader, StyledHeaderButtonWrapper, StyledHeaderContent, StyledHeaderLogo } from './AppBar.styles';
 
 export const AppBar = ({ children }: AppBarProps) => {
     return (
@@ -18,7 +14,7 @@ export const AppBar = ({ children }: AppBarProps) => {
                         <Typography variant="h1">join.tsh.io</Typography>
                     </StyledHeaderLogo>
                     <StyledHeaderButtonWrapper>
-                        <Button variant="outlined" component={RouterLink} to={AppRoute.Login}>
+                        <Button variant="outlined" component={RouterLink} to={AppRoute.LOGIN}>
                             Log in
                         </Button>
                     </StyledHeaderButtonWrapper>

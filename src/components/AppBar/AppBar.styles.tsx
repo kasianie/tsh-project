@@ -20,7 +20,10 @@ export const StyledHeaderFilters = styled('section')(({ theme }) => ({
         width: 'unset',
         flex: 1,
         order: 2,
-        marginTop: 0
+        marginTop: 0,
+        display: 'flex',
+        // flexWrap: 'wrap',
+        alignItems: 'center'
     }
 }));
 

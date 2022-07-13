@@ -1,64 +1,32 @@
-import { useEffect, useReducer, useState } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
+import { useEffect, useState } from 'react';
+import { AxiosRequestConfig } from 'axios';
+import { api } from './ApiInstance';
+import { ApiState } from './Api.types';
 
-const getAccessToken = (): string | null => sessionStorage.getItem('access_token');
-
-const api = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-    timeout: 5000,
-    headers: {
-        Authorization: `Bearer ${getAccessToken()}`,
-        'Content-Type': 'application/json'
-    }
-});
-
-const getDataReducer = (state: any, action: any) => {
-    switch (action.type) {
-        case 'GET_INIT':
-            return {
-                ...state,
-                isLoading: true,
-                isError: false
-            };
-        case 'GET_SUCCESS':
-            return {
-                ...state,
-                isLoading: false,
-                isError: false,
-                data: action.payload
-            };
-        case 'GET_FAILURE':
-            return {
-                ...state,
-                isLoading: false,
-                isError: true
-            };
-        default:
-            throw new Error();
-    }
-};
-
-export const useGetDataApi = (url: string, initialConfig: AxiosRequestConfig = {}, initialData: any = null) => {
-    const [config, setConfig] = useState(initialConfig);
-
-    const [state, dispatch] = useReducer(getDataReducer, {
-        isLoading: false,
-        isError: false,
-        data: initialData
-    });
+export function useGetDataApi<T>(
+    url: string,
+    initialConfig: AxiosRequestConfig = {},
+    initialData: T | null = null
+): [T | null, ApiState, AxiosRequestConfig, (config: AxiosRequestConfig) => void] {
+    const [data, setData] = useState(initialData);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [config, setConfig] = useState({ ...initialConfig });
 
     useEffect(() => {
         const getData = async () => {
-            dispatch({ type: 'GET_INIT' });
+            setIsLoading(true);
+            setIsError(false);
             try {
                 const result = await api.get(url, config);
-                dispatch({ type: 'GET_SUCCESS', payload: result.data });
+                setData(result.data);
             } catch (error) {
-                dispatch({ type: 'GET_FAILURE' });
+                setIsError(true);
             }
+            setIsLoading(false);
         };
         getData();
     }, [url, config]);
 
-    return [state, config, setConfig];
-};
+    return [data, { isLoading, isError }, config, setConfig];
+}
