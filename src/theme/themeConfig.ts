@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material';
 import {
     colorBackground,
     colorBackgroundOverlay,
+    colorDialogOverlay,
     colorGrey1,
     colorGrey2,
     colorGrey3,
@@ -35,7 +36,7 @@ export const theme = createTheme({
             lineHeight: '40px',
             fontWeight: 600
         },
-        h5: {
+        h2: {
             fontSize: '18px',
             lineHeight: '16px',
             fontWeight: 600
@@ -45,6 +46,11 @@ export const theme = createTheme({
             lineHeight: '16px',
             fontWeight: 600,
             textTransform: 'capitalize'
+        },
+        body1: {
+            fontSize: '18px',
+            lineHeight: '24px',
+            fontWeight: 600
         },
         body2: {
             fontSize: '14px',
@@ -159,11 +165,42 @@ export const theme = createTheme({
                 }
             }
         },
+        MuiDialog: {
+            styleOverrides: {
+                paper: {
+                    borderRadius: '8px'
+                }
+            }
+        },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    borderRadius: '8px'
+                }
+            }
+        },
+        MuiBackdrop: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: colorDialogOverlay
+                }
+            }
+        },
         MuiSvgIcon: {
             styleOverrides: {
                 root: {
                     path: {
                         fill: 'inherit'
+                    }
+                }
+            }
+        },
+        MuiIconButton: {
+            styleOverrides: {
+                root: {
+                    svg: {
+                        width: '14px',
+                        height: '14px'
                     }
                 }
             }

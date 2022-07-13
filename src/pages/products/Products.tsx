@@ -1,3 +1,5 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import { debounce } from 'lodash';
 import { FormControlLabel, Grid } from '@mui/material';
 import { ApiUrl } from 'api/ApiUrl.enum';
 import { useGetDataApi } from 'api/useGetDataApi';
@@ -10,11 +12,10 @@ import { ListStateInfo } from 'components/ListStateInfo/ListStateInfo';
 import { Loader } from 'components/Loader/Loader';
 import { ProductCard } from 'components/ProductCard/ProductCard';
 import { SearchInput } from 'components/SearchInput/SearchInput';
-import { debounce } from 'lodash';
-import React, { useEffect, useMemo } from 'react';
-import { initListConfig } from './initConfig';
 import { StyledFormGroup, StyledListWrapper, StyledPaginationWrapper } from './Products.styles';
 import { ProductItem, ProductListResponseData } from './Products.types';
+import { initListConfig } from './initConfig';
+import { DetailsDialog } from 'components/DetailsDialog/DetailsDialog';
 
 export const Products = () => {
     const [data, { isLoading, isError }, { params }, getList] = useGetDataApi<ProductListResponseData>(
@@ -22,7 +23,9 @@ export const Products = () => {
         initListConfig
     );
 
-    const handleShowDetails = (id: number) => alert(id);
+    const [detailsDialog, setDetailsDialog] = useState<ProductItem | null>(null);
+
+    const handleShowDetails = (product: ProductItem) => setDetailsDialog(product);
 
     const handleChangeActive = () => {
         getList({
@@ -61,7 +64,7 @@ export const Products = () => {
                         <FormControlLabel
                             control={<Checkbox />}
                             label="Active"
-                            checked={params.active === null ? false : true}
+                            checked={!!params.active}
                             onChange={handleChangeActive}
                         />
                         <FormControlLabel
@@ -75,28 +78,27 @@ export const Products = () => {
             </AppBar>
             <main>
                 <LayoutWrapper>
-                    <StyledListWrapper>
-                        {data && data.items.length > 0 && (
-                            <>
-                                <Grid container rowSpacing={4} columnSpacing={3} alignItems="stretch">
-                                    {data.items.map((product: ProductItem) => (
-                                        <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
-                                            <ProductCard {...product} onClick={handleShowDetails} />
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                                <StyledPaginationWrapper>
-                                    <CustomPagination
-                                        count={data.meta.totalPages}
-                                        page={params.page}
-                                        onChangePage={handleChangePage}
-                                    />
-                                </StyledPaginationWrapper>
-                            </>
-                        )}
-                    </StyledListWrapper>
+                    {data && data.items.length > 0 && (
+                        <StyledListWrapper>
+                            <Grid container rowSpacing={4} columnSpacing={3} alignItems="stretch">
+                                {data.items.map((product: ProductItem) => (
+                                    <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+                                        <ProductCard {...product} onClick={() => handleShowDetails(product)} />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                            <StyledPaginationWrapper>
+                                <CustomPagination
+                                    count={data.meta.totalPages}
+                                    page={params.page}
+                                    onChangePage={handleChangePage}
+                                />
+                            </StyledPaginationWrapper>
+                        </StyledListWrapper>
+                    )}
                     {(isError || data?.items.length === 0) && <ListStateInfo error={isError} />}
                     {isLoading && <Loader />}
+                    {detailsDialog && <DetailsDialog {...detailsDialog} onClose={() => setDetailsDialog(null)} />}
                 </LayoutWrapper>
             </main>
         </>

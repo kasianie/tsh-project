@@ -1,13 +1,4 @@
-import { Card, CardContent, styled } from '@mui/material';
-
-export const StyledCard = styled(Card)({
-    height: '100%',
-    borderRadius: '8px',
-    boxShadow: 'none',
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative'
-}) as typeof Card;
+import { CardContent, styled } from '@mui/material';
 
 export const StyledCardContent = styled(CardContent)({
     flex: 1,

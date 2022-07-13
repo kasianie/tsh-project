@@ -15,7 +15,7 @@ export const StarContainedIcon = (props: SvgIconProps) => (
     <SvgIcon {...props} component={StarContained} inheritViewBox />
 );
 
-export const CloseIcon = (props: SvgIconProps) => <SvgIcon {...props} component={Close} />;
+export const CloseIcon = (props: SvgIconProps) => <SvgIcon {...props} component={Close} inheritViewBox />;
 
 export const SearchIcon = (props: SvgIconProps) => <SvgIcon {...props} component={Search} inheritViewBox />;
 

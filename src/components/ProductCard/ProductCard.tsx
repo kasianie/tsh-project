@@ -1,13 +1,10 @@
 import { Button, CardMedia, Typography } from '@mui/material';
-import { ProductItem } from 'pages/products/Products.types';
 import { StarRating } from 'components/StarRating/StarRating';
-import { BottomCardSection, StyledCard, StyledCardContent, StyledCardLabel } from './ProductCard.styles';
+import { BottomCardSection, StyledCardContent, StyledCardLabel } from './ProductCard.styles';
+import { StyledCard } from 'components/StyledCard/StyledCard';
+import { ProductCardProps } from './ProductCard.types';
 
-type ProductCardProps = ProductItem & {
-    onClick: (id: number) => void;
-};
-
-export const ProductCard = ({ id, name, description, rating, image, promo, active, onClick }: ProductCardProps) => {
+export const ProductCard = ({ name, description, rating, image, promo, active, onClick }: ProductCardProps) => {
     return (
         <StyledCard component="article">
             <CardMedia
@@ -20,7 +17,7 @@ export const ProductCard = ({ id, name, description, rating, image, promo, activ
             {promo && <StyledCardLabel>Promo</StyledCardLabel>}
             <StyledCardContent>
                 <section>
-                    <Typography variant="h5" marginBottom="8px">
+                    <Typography variant="h2" marginBottom="8px">
                         {name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -29,13 +26,7 @@ export const ProductCard = ({ id, name, description, rating, image, promo, activ
                 </section>
                 <BottomCardSection>
                     <StarRating value={rating} readOnly sx={{ marginBottom: '16px' }} />
-                    <Button
-                        onClick={() => onClick(id)}
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        disabled={!active}
-                    >
+                    <Button onClick={onClick} fullWidth variant="contained" color="primary" disabled={!active}>
                         {active ? 'Show details' : 'Unavailable'}
                     </Button>
                 </BottomCardSection>

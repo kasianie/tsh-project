@@ -9,5 +9,6 @@ export const colorGrey2 = 'rgba(224, 226, 234, 1)';
 export const colorGrey3 = 'rgba(185, 189, 207, 1)';
 export const colorGrey4 = 'rgba(145, 148, 165, 1)';
 export const colorGrey5 = 'rgba(26, 27, 29, 1)';
+export const colorDialogOverlay = 'rgba(26, 27, 29, .9)';
 export const paddingPage = '0 24px';
 export const maxWidthPageContent = '1224px';

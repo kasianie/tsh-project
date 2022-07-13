@@ -7,7 +7,7 @@ export const ListStateInfo = ({ error = false }: ListStateInfoProps) => {
     return (
         <StyledListStateInfo>
             <TaskListPlainIcon />
-            <StyledTitle variant="h5" color={error ? 'error' : 'default'}>
+            <StyledTitle variant="h2" color={error ? 'error' : 'default'}>
                 {error ? 'Ooops... something went wrong' : "Ooops... It's empty here"}
             </StyledTitle>
             <Typography variant="body2" color="text.secondary">
