@@ -78,26 +78,28 @@ export const Products = () => {
             </AppBar>
             <main>
                 <LayoutWrapper>
-                    {data && data.items.length > 0 && (
-                        <StyledListWrapper>
-                            <Grid container rowSpacing={4} columnSpacing={3} alignItems="stretch">
-                                {data.items.map((product: ProductItem) => (
-                                    <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
-                                        <ProductCard {...product} onClick={() => handleShowDetails(product)} />
-                                    </Grid>
-                                ))}
-                            </Grid>
-                            <StyledPaginationWrapper>
-                                <CustomPagination
-                                    count={data.meta.totalPages}
-                                    page={params.page}
-                                    onChangePage={handleChangePage}
-                                />
-                            </StyledPaginationWrapper>
-                        </StyledListWrapper>
-                    )}
-                    {(isError || data?.items.length === 0) && <ListStateInfo error={isError} />}
-                    {isLoading && <Loader />}
+                    <StyledListWrapper>
+                        {data && data.items.length > 0 && (
+                            <>
+                                <Grid container rowSpacing={4} columnSpacing={3} alignItems="stretch">
+                                    {data.items.map((product: ProductItem) => (
+                                        <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+                                            <ProductCard {...product} onClick={() => handleShowDetails(product)} />
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                                <StyledPaginationWrapper>
+                                    <CustomPagination
+                                        count={data.meta.totalPages}
+                                        page={params.page}
+                                        onChangePage={handleChangePage}
+                                    />
+                                </StyledPaginationWrapper>
+                            </>
+                        )}
+                        {(isError || data?.items.length === 0) && <ListStateInfo error={isError} />}
+                        {isLoading && <Loader />}
+                    </StyledListWrapper>
                     {detailsDialog && <DetailsDialog {...detailsDialog} onClose={() => setDetailsDialog(null)} />}
                 </LayoutWrapper>
             </main>
